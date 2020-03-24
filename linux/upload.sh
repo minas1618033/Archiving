@@ -19,10 +19,19 @@ else
 printf "\n   << B-Class Nothing to Do >>\n\n"
 fi
 
-sourceB="$(du -s ~/Downloads/HV.3/C-Class/ | awk '{print $1}')"
-if [ $sourceB -gt 1000 ]
+sourceC="$(du -s ~/Downloads/HV.3/C-Class/ | awk '{print $1}')"
+if [ $sourceC -gt 1000 ]
 then
 rclone move --ignore-existing --transfers 1 --bwlimit 4M --no-traverse --use-mmap --buffer-size 1G --drive-chunk-size 1G --progress --stats-file-name-length 0 ~/Downloads/HV.3/C-Class/ GSuite:/Video/HVideo/C-Class/
+printf "\n   << C-Class Upload Finished >>\n\n"
+else
+printf "\n   << C-Class Nothing to Do >>\n\n"
+fi
+
+sourceD="$(du -s ~/Downloads/HV.3/D-Class/ | awk '{print $1}')"
+if [ $sourceD -gt 1000 ]
+then
+rclone move --ignore-existing --transfers 1 --bwlimit 4M --no-traverse --use-mmap --buffer-size 1G --drive-chunk-size 1G --progress --stats-file-name-length 0 ~/Downloads/HV.3/D-Class/ GSuite:/Video/HVideo/D-Class/
 fi
 printf "\n   << Upload Finished >>\n\n"
 
@@ -49,9 +58,18 @@ else
 printf "\n   << B-Class Nothing to Do >>\n\n"
 fi
 
-sourceB="$(du -s ~/Downloads/HV.3/C-Class/ | awk '{print $1}')"
-if [ $sourceB -gt 1000 ]
+sourceC="$(du -s ~/Downloads/HV.3/C-Class/ | awk '{print $1}')"
+if [ $sourceC -gt 1000 ]
 then
 rclone move --ignore-existing --transfers 1 --no-traverse --use-mmap --buffer-size 1G --drive-chunk-size 1G --progress --stats-file-name-length 0 ~/Downloads/HV.3/C-Class/ GSuite:/Video/HVideo/C-Class/
+printf "\n   << C-Class Upload Finished >>\n\n"
+else
+printf "\n   << C-Class Nothing to Do >>\n\n"
+fi
+
+sourceD="$(du -s ~/Downloads/HV.3/D-Class/ | awk '{print $1}')"
+if [ $sourceD -gt 1000 ]
+then
+rclone move --ignore-existing --transfers 1 --no-traverse --use-mmap --buffer-size 1G --drive-chunk-size 1G --progress --stats-file-name-length 0 ~/Downloads/HV.3/D-Class/ GSuite:/Video/HVideo/D-Class/
 fi
 printf "\n   << Upload Finished >>\n\n"
