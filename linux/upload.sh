@@ -1,75 +1,141 @@
+# Upload HVideo to GSuite-----------------------------------
 # !/bin/bash
-# Upload Files to GSuite with bandwidth limit-----------------------------------
+sourceA="/home/zelko/Downloads/HVideo/HV.3/A/"
+sourceB="/home/zelko/Downloads/HVideo/HV.3/B/"
+sourceC="/home/zelko/Downloads/HVideo/HV.3/C/"
+sourceD="/home/zelko/Downloads/HVideo/HV.3/D/"
+sourceE="/home/zelko/Downloads/HVideo/HV.3/E/"
+sizeA="$(du -s $sourceA | awk '{print $1}')"
+sizeB="$(du -s $sourceB | awk '{print $1}')"
+sizeC="$(du -s $sourceC | awk '{print $1}')"
+sizeD="$(du -s $sourceD | awk '{print $1}')"
+sizeE="$(du -s $sourceE | awk '{print $1}')"
+destinationA="GSuite:/Video/HVideo/A-Class/"
+destinationB="GSuite:/Video/HVideo/B-Class/"
+destinationC="GSuite:/Video/HVideo/C-Class/"
+destinationD="GSuite:/Video/HVideo/D-Class/"
+destinationE="GSuite:/Video/HVideo/E-Class/"
+move="rclone move --ignore-existing --transfers 1 --bwlimit 4M --no-traverse --use-mmap --buffer-size 1G --drive-chunk-size 1G --progress --stats-file-name-length 0"
+moveX="rclone move --ignore-existing --transfers 1 --no-traverse --use-mmap --buffer-size 1G --drive-chunk-size 1G --progress --stats-file-name-length 0"
+
 clear
-sourceA="$(du -s ~/Downloads/HV.3/A-Class/ | awk '{print $1}')"
-if [ $sourceA -gt 1000 ]
-then
-rclone move --ignore-existing --transfers 1 --bwlimit 4M --no-traverse --use-mmap --buffer-size 1G --drive-chunk-size 1G --progress --stats-file-name-length 0 ~/Downloads/HV.3/A-Class/ GSuite:/Video/HVideo/A-Class/
-printf "\n   << A-Class Upload Finished >>\n\n"
-else
-printf "\n   << A-Class Nothing to Do >>\n\n"
-fi
+printf "\n1.Upload archives in /HVideo\n3.Upload archives in /HVideo without bandwidth limit\n7.Upload archives in /HVideo once\n\n"
+read -n1 -p "Please choose an action : " action
+printf "\n\n"
+    case $action in
+        1)  function UPLOAD() {
+                if [ $sizeA -gt 1000 ]
+                    then
+                        $move $sourceA $destinationA
+                        printf "\n   << A-Class Upload Finished >>\n\n"
+                    else
+                        printf "\n   << A-Class Nothing to Do >>\n\n"
+                fi
+                if [ $sizeB -gt 1000 ]
+                    then
+                        $move $sourceB $destinationB
+                        printf "\n   << B-Class Upload Finished >>\n\n"
+                    else
+                        printf "\n   << B-Class Nothing to Do >>\n\n"
+                fi
+                if [ $sizeC -gt 1000 ]
+                    then
+                        $move $sourceC $destinationC
+                        printf "\n   << C-Class Upload Finished >>\n\n"
+                    else
+                        printf "\n   << C-Class Nothing to Do >>\n\n"
+                fi
+                if [ $sizeD -gt 1000 ]
+                    then
+                        $move $sourceD $destinationD
+                        printf "\n   << D-Class Upload Finished >>\n\n"
+                    else
+                        printf "\n   << D-Class Nothing to Do >>\n\n"
+                fi
+                if [ $sizeE -gt 1000 ]
+                    then
+                        $move $sourceE $destinationE
+                fi
+            } 
+            UPLOAD
+            UPLOAD
+            ;;
+        3)  function UPLOADX() {
+                if [ $sizeA -gt 1000 ]
+                    then
+                        $moveX $sourceA $destinationA
+                        printf "\n   << A-Class Upload Finished >>\n\n"
+                    else
+                        printf "\n   << A-Class Nothing to Do >>\n\n"
+                fi
+                if [ $sizeB -gt 1000 ]
+                    then
+                        $moveX $sourceB $destinationB
+                        printf "\n   << B-Class Upload Finished >>\n\n"
+                    else
+                        printf "\n   << B-Class Nothing to Do >>\n\n"
+                fi
+                if [ $sizeC -gt 1000 ]
+                    then
+                        $moveX $sourceC $destinationC
+                        printf "\n   << C-Class Upload Finished >>\n\n"
+                    else
+                        printf "\n   << C-Class Nothing to Do >>\n\n"
+                fi
+                if [ $sizeD -gt 1000 ]
+                    then
+                        $moveX $sourceD $destinationD
+                        printf "\n   << D-Class Upload Finished >>\n\n"
+                    else
+                        printf "\n   << D-Class Nothing to Do >>\n\n"
+                fi
+                if [ $sizeE -gt 1000 ]
+                    then
+                        $moveX $sourceE $destinationE
+                fi
+            } 
+            UPLOADX
+            UPLOADX
+            ;;
+        7)  function UPLOADX() {
+                if [ $sizeA -gt 1000 ]
+                    then
+                        $moveX $sourceA $destinationA
+                        printf "\n   << A-Class Upload Finished >>\n\n"
+                    else
+                        printf "\n   << A-Class Nothing to Do >>\n\n"
+                fi
+                if [ $sizeB -gt 1000 ]
+                    then
+                        $moveX $sourceB $destinationB
+                        printf "\n   << B-Class Upload Finished >>\n\n"
+                    else
+                        printf "\n   << B-Class Nothing to Do >>\n\n"
+                fi
+                if [ $sizeC -gt 1000 ]
+                    then
+                        $moveX $sourceC $destinationC
+                        printf "\n   << C-Class Upload Finished >>\n\n"
+                    else
+                        printf "\n   << C-Class Nothing to Do >>\n\n"
+                fi
+                if [ $sizeD -gt 1000 ]
+                    then
+                        $moveX $sourceD $destinationD
+                        printf "\n   << D-Class Upload Finished >>\n\n"
+                    else
+                        printf "\n   << D-Class Nothing to Do >>\n\n"
+                fi
+                if [ $sizeE -gt 1000 ]
+                    then
+                        $moveX $sourceE $destinationE
+                fi
+            } 
+            UPLOADX
+            ;;
+        *)  printf "\n(Error) Please input again !\n\n"
+            exit;
+            ;;
+    esac
 
-sourceB="$(du -s ~/Downloads/HV.3/B-Class/ | awk '{print $1}')"
-if [ $sourceB -gt 1000 ]
-then
-rclone move --ignore-existing --transfers 1 --bwlimit 4M --no-traverse --use-mmap --buffer-size 1G --drive-chunk-size 1G --progress --stats-file-name-length 0 ~/Downloads/HV.3/B-Class/ GSuite:/Video/HVideo/B-Class/
-printf "\n   << B-Class Upload Finished >>\n\n"
-else
-printf "\n   << B-Class Nothing to Do >>\n\n"
-fi
-
-sourceC="$(du -s ~/Downloads/HV.3/C-Class/ | awk '{print $1}')"
-if [ $sourceC -gt 1000 ]
-then
-rclone move --ignore-existing --transfers 1 --bwlimit 4M --no-traverse --use-mmap --buffer-size 1G --drive-chunk-size 1G --progress --stats-file-name-length 0 ~/Downloads/HV.3/C-Class/ GSuite:/Video/HVideo/C-Class/
-printf "\n   << C-Class Upload Finished >>\n\n"
-else
-printf "\n   << C-Class Nothing to Do >>\n\n"
-fi
-
-sourceD="$(du -s ~/Downloads/HV.3/D-Class/ | awk '{print $1}')"
-if [ $sourceD -gt 1000 ]
-then
-rclone move --ignore-existing --transfers 1 --bwlimit 4M --no-traverse --use-mmap --buffer-size 1G --drive-chunk-size 1G --progress --stats-file-name-length 0 ~/Downloads/HV.3/D-Class/ GSuite:/Video/HVideo/D-Class/
-fi
-printf "\n   << Upload Finished >>\n\n"
-
-
-
-# Upload Files to GSuite without bandwidth limit-----------------------------------
-# !/bin/bash
-clear
-sourceA="$(du -s ~/Downloads/HV.3/A-Class/ | awk '{print $1}')"
-if [ $sourceA -gt 1000 ]
-then
-rclone move --ignore-existing --transfers 1 --no-traverse --use-mmap --buffer-size 1G --drive-chunk-size 1G --progress --stats-file-name-length 0 ~/Downloads/HV.3/A-Class/ GSuite:/Video/HVideo/A-Class/
-printf "\n   << A-Class Upload Finished >>\n\n"
-else
-printf "\n   << A-Class Nothing to Do >>\n\n"
-fi
-
-sourceB="$(du -s ~/Downloads/HV.3/B-Class/ | awk '{print $1}')"
-if [ $sourceB -gt 1000 ]
-then
-rclone move --ignore-existing --transfers 1 --no-traverse --use-mmap --buffer-size 1G --drive-chunk-size 1G --progress --stats-file-name-length 0 ~/Downloads/HV.3/B-Class/ GSuite:/Video/HVideo/B-Class/
-printf "\n   << B-Class Upload Finished >>\n\n"
-else
-printf "\n   << B-Class Nothing to Do >>\n\n"
-fi
-
-sourceC="$(du -s ~/Downloads/HV.3/C-Class/ | awk '{print $1}')"
-if [ $sourceC -gt 1000 ]
-then
-rclone move --ignore-existing --transfers 1 --no-traverse --use-mmap --buffer-size 1G --drive-chunk-size 1G --progress --stats-file-name-length 0 ~/Downloads/HV.3/C-Class/ GSuite:/Video/HVideo/C-Class/
-printf "\n   << C-Class Upload Finished >>\n\n"
-else
-printf "\n   << C-Class Nothing to Do >>\n\n"
-fi
-
-sourceD="$(du -s ~/Downloads/HV.3/D-Class/ | awk '{print $1}')"
-if [ $sourceD -gt 1000 ]
-then
-rclone move --ignore-existing --transfers 1 --no-traverse --use-mmap --buffer-size 1G --drive-chunk-size 1G --progress --stats-file-name-length 0 ~/Downloads/HV.3/D-Class/ GSuite:/Video/HVideo/D-Class/
-fi
 printf "\n   << Upload Finished >>\n\n"
