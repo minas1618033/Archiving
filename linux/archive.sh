@@ -1,6 +1,29 @@
 # Archive -----------------------------------
 # !/bin/bash
 clear
+function renamefunc()
+{
+    find -name "*" | grep " " | while read file; do
+    mv "${file}" "${file// /}"; done
+}
+
+cd ~/Downloads/HV.2/
+if [ ! -z "$(find -name "*" | grep " ")" ]
+    then
+        find -name "*" | grep " " | while read file; do
+            printf "$file\n"
+        done
+
+        while true; do
+            read -p "Some filenames incloud whitespace character, Do you rename them ?  " -n 1
+            case $REPLY in
+                [Yy] ) renamefunc; printf "\nRename Sucess !\n\nStart archive process, please waiting......\n"; break; ;;
+                [Nn] ) printf "\nFiles is unfiled, please check it later.\n"; exit; ;;
+                * ) printf "\nPlease input again.\n\n"; ;;
+            esac
+        done
+fi
+
 cd ~/Downloads/HV.2/A-Class/
 for filename in *.jpg; do
     if [ ${#filename} -ge 7 ]; then
