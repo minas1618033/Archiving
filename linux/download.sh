@@ -1,7 +1,7 @@
 # Download files from Google Drive by rclone -----------------------------------
 # !/bin/bash
-/usr/bin/rclone move --ignore-existing --verbose --transfers 1 --checkers 8 --contimeout 60s --timeout 300s --retries 3 --low-level-retries 10 --stats 15s --stats-file-name-length 0 GSuite:/1 ~/Downloads/HV.1/.Downloading/
 clear
 rclone move --ignore-existing --transfers 1 --use-mmap --buffer-size 1G  --progress --stats-file-name-length 0 GSuite:/1 ~/Downloads/HV.1/.Downloading/
+rclone move --include "/*.rar" --ignore-existing --transfers 1 --use-mmap --buffer-size 1G  --progress --stats-file-name-length 0 GSuite:/ ~/Downloads/HV.1/.Downloading/
 mv ~/Downloads/HV.1/.Downloading/* ~/Downloads/HV.1/
 printf "\n   << Download Finished >>\n\n"
