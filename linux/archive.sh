@@ -1,17 +1,46 @@
 # Archive -----------------------------------
 # !/bin/bash
 cd ~/Downloads/HV.2/A-Class/
-mv *.jpg ~/Downloads/HV.3/A-Class/
-mv *.png ~/Downloads/HV.3/A-Class/
-for filename in *.{avi,mkv,mp4,mpg,mpeg,rm,rmvb,vob,wmv};
-do wine 7z a -t7z -m0=lzma2 -mx9 -stx7z -mhe -mmt=4 -sdel -p'PASSWORD' ${filename%%.*}.7z $filename; rm "*.7z"; mv *.7z ~/Downloads/HV.3/A-Class/; done
+for filename in *.{avi,mkv,mp4,mpg,mpeg,rm,rmvb,vob,wmv}; do
+    mv ${filename%%.*}.jpg ~/Downloads/HV.3/.A-Class/
+    wine 7z a -t7z -m0=lzma2 -mx9 -stx7z -mhe -mmt=4 -sdel -p'PASSWORD' ~/Downloads/HV.3/.A-Class/${filename%%.*}.7z $filename
+    mv ~/Downloads/HV.3/.A-Class/${filename%%.*}.* ~/Downloads/HV.3/A-Class/
+done
+
+cd ~/Downloads/HV.2/A-Class.MF/
+for dirname in *; do
+    mv ~/Downloads/HV.2/A-Class.MF/$dirname/$dirname.jpg ~/Downloads/HV.3/.A-Class/
+    wine 7z a -t7z -m0=lzma2 -mx9 -r -stx7z -mhe -mmt=4 -sdel -p'PASSWORD' ~/Downloads/HV.3/.A-Class/$dirname.7z ~/Downloads/HV.2/A-Class.MF/$dirname/*.*
+    find ~/Downloads/HV.2/A-Class.MF -depth -empty -type d -exec rmdir -v {} \;
+    mv ~/Downloads/HV.3/.A-Class/$dirname.* ~/Downloads/HV.3/A-Class/
+done
+
 cd ~/Downloads/HV.2/B-Class/
-mv *.jpg ~/Downloads/HV.3/B-Class/
-mv *.png ~/Downloads/HV.3/B-Class/
-for filename in *.{avi,mkv,mp4,mpg,mpeg,rm,rmvb,vob,wmv};
-do wine 7z a -t7z -m0=lzma2 -mx9 -stx7z -mhe -mmt=4 -sdel -p'PASSWORD' ${filename%%.*}.7z $filename; rm "*.7z"; mv *.7z ~/Downloads/HV.3/B-Class/; done
+for filename in *.{avi,mkv,mp4,mpg,mpeg,rm,rmvb,vob,wmv}; do
+    mv ${filename%%.*}.jpg ~/Downloads/HV.3/.B-Class/
+    wine 7z a -t7z -m0=lzma2 -mx9 -stx7z -mhe -mmt=4 -sdel -p'PASSWORD' ~/Downloads/HV.3/.B-Class/${filename%%.*}.7z $filename
+    mv ~/Downloads/HV.3/.B-Class/${filename%%.*}.* ~/Downloads/HV.3/B-Class/
+done
+
+cd ~/Downloads/HV.2/B-Class.MF/
+for dirname in *; do
+    mv ~/Downloads/HV.2/B-Class.MF/$dirname/$dirname.jpg ~/Downloads/HV.3/B-Class/
+    wine 7z a -t7z -m0=lzma2 -mx9 -r -stx7z -mhe -mmt=4 -sdel -p'PASSWORD' ~/Downloads/HV.3/B-Class/$dirname.7z ~/Downloads/HV.2/B-Class.MF/$dirname/*.*
+    find ~/Downloads/HV.2/B-Class.MF -depth -empty -type d -exec rmdir -v {} \;
+    mv ~/Downloads/HV.3/.B-Class/$dirname.* ~/Downloads/HV.3/B-Class/
+done
+
 cd ~/Downloads/HV.2/C-Class/
-mv *.jpg ~/Downloads/HV.3/C-Class/
-mv *.png ~/Downloads/HV.3/C-Class/
-for filename in *.{avi,mkv,mp4,mpg,mpeg,rm,rmvb,vob,wmv};
-do wine 7z a -t7z -m0=lzma2 -mx9 -stx7z -mhe -mmt=4 -sdel -p'PASSWORD' ${filename%%.*}.7z $filename; rm "*.7z"; mv *.7z ~/Downloads/HV.3/C-Class/; done
+for filename in *.{avi,mkv,mp4,mpg,mpeg,rm,rmvb,vob,wmv}; do
+    mv ${filename%%.*}.jpg ~/Downloads/HV.3/.C-Class/
+    wine 7z a -t7z -m0=lzma2 -mx9 -stx7z -mhe -mmt=4 -sdel -p'PASSWORD' ~/Downloads/HV.3/.C-Class/${filename%%.*}.7z $filename
+    mv ~/Downloads/HV.3/.C-Class/${filename%%.*}.* ~/Downloads/HV.3/C-Class/
+done
+
+cd ~/Downloads/HV.2/C-Class.MF/
+for dirname in *; do
+    mv ~/Downloads/HV.2/C-Class.MF/$dirname/$dirname.jpg ~/Downloads/HV.3/C-Class/
+    wine 7z a -t7z -m0=lzma2 -mx9 -r -stx7z -mhe -mmt=4 -sdel -p'PASSWORD' ~/Downloads/HV.3/C-Class/$dirname.7z ~/Downloads/HV.2/C-Class.MF/$dirname/*.*
+    find ~/Downloads/HV.2/C-Class.MF -depth -empty -type d -exec rmdir -v {} \;
+    mv ~/Downloads/HV.3/.C-Class/$dirname.* ~/Downloads/HV.3/C-Class/
+done
