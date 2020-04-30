@@ -15,8 +15,8 @@ destinationB="GSuite:/Video/HVideo/B-Class/"
 destinationC="GSuite:/Video/HVideo/C-Class/"
 destinationD="GSuite:/Video/HVideo/D-Class/"
 destinationE="GSuite:/Video/HVideo/E-Class/"
-move="rclone move --ignore-existing --transfers 1 --bwlimit 4M --no-traverse --use-mmap --buffer-size 1G --drive-chunk-size 1G --progress --stats-file-name-length 0"
-moveX="rclone move --ignore-existing --transfers 1 --no-traverse --use-mmap --buffer-size 1G --drive-chunk-size 1G --progress --stats-file-name-length 0"
+move="rclone move --transfers 1 --bwlimit 5M --no-traverse --use-mmap --drive-chunk-size 1G --progress --stats-file-name-length 0"
+moveX="rclone move --transfers 1 --no-traverse --use-mmap --drive-chunk-size 1G --progress --stats-file-name-length 0"
 
 clear
 printf "\n1.Upload archives in /HVideo\n3.Upload archives in /HVideo without bandwidth limit\n7.Upload archives in /HVideo once\n\n"
