@@ -1,7 +1,7 @@
 # Download files from Google Drive by rclone -----------------------------------
 # !/bin/bash
 mv ~/Downloads/HVideo/HV.1/c/* ~/Downloads/HVideo/HV.2/
-rclone move --include "/*.rar" --ignore-existing --transfers 1 --use-mmap --buffer-size 1G  --progress --stats-file-name-length 0 GSuite:/ ~/Downloads/HVideo/HV.1/.d/
+rclone move --include "/*.rar" --transfers 1 --use-mmap --progress --stats-file-name-length 0 GSuite:/ ~/Downloads/HVideo/HV.1/.d/
 mv ~/Downloads/HVideo/HV.1/.d/* ~/Downloads/HVideo/HV.1/
 printf "\n   << Download Finished >>\n\n"
 
